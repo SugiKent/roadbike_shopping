@@ -7,7 +7,10 @@ html
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
   body
-    div#user-info
+    - flash.each do |type, value|
+      = content_tag(:div, value, class: "alert alert-#{type} bg-#{type}")
+
+    #user-info
       - if user_signed_in?
         = current_user.name
         | [

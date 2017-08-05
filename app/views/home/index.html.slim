@@ -2,3 +2,14 @@ h1
   | Home#index
 p
   | Find me in app/views/home/index.html.erb
+
+= form_with url: products_path, scope: :products, html: { data: {remote: false} } do |f|
+  = f.text_field :url
+  = f.submit '登録'
+
+- current_user.product.each do |p|
+  = p.name
+  | &nbsp;
+  = ProductPrice.find(p.id).price
+  | 円
+  br

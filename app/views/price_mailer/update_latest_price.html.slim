@@ -1,0 +1,21 @@
+h2
+  | 「
+  = @product.name
+  | 」の価格更新！
+
+h3
+  | 現在
+  = @price.price
+  | 円です！
+
+p
+  = @user.name
+  | 様
+  br
+  = @product.name
+  | の値段が昨日よりも安い様です。
+  br
+  | ご購入は、
+  a href="#{@product.url}"
+    | こちら
+  | から！
