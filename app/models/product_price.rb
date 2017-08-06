@@ -35,7 +35,6 @@ class ProductPrice < ApplicationRecord
       @product_price.save_price(product)
       if @product_price.update_latest_price?(product)
         product.user.each do |user|
-          binding.pry
           PriceMailer.update_latest_price(user, product).deliver
         end
       else

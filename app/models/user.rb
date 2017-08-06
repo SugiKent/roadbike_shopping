@@ -3,9 +3,8 @@ class User < ApplicationRecord
   has_many :product, through: :product_user
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :omniauthable
-  
+  devise :rememberable, :trackable, :omniauthable
+
   def self.find_for_facebook_oauth(auth)
     user = User.where(provider: auth.provider, uid: auth.uid).first
 
