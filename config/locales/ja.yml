@@ -204,4 +204,9 @@ ja:
     pm: 午後
 
   view:
-    site_title: ロードバイク通販 最低価格通知
+    site_title: EC最低価格通知
+    menu:
+      create_product: 商品登録
+      mypage: マイページ
+      signout: サインアウト
+      login: Facebookログイン

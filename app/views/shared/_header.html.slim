@@ -1,11 +1,20 @@
 .container-fluid.pLR0
   nav.navbar.navbar-default
-    = link_to t('view.site_title'), root_path, class: "navbar-brand"
-    .collapse.navbar-collapse
+    .navbar-header
+      button.navbar-toggle.collapsed data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      = link_to t('view.site_title'), root_path, class: "navbar-brand"
+    .collapse.navbar-collapse#bs-example-navbar-collapse-1
       ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
           li
-            = link_to 'サインアウト', destroy_user_session_path, method: :delete
+            = link_to t('view.menu.create_product'), user_root_path
+          li
+            = link_to t('view.menu.mypage'), mypage_index_path
+          li
+            = link_to t('view.menu.signout'), destroy_user_session_path, method: :delete
         - else
           li
-            = link_to "Facebookログイン", user_facebook_omniauth_authorize_path
+            = link_to t('view.menu.login'), user_facebook_omniauth_authorize_path

@@ -1,0 +1,15 @@
+.table-responsive
+  table.table.table-striped
+    tr
+      th
+        | 商品名
+      th
+        | 価格
+    - current_user.product.each do |p|
+      tr
+        td
+          = p.name
+        td
+          - @price = p.product_prices.last
+          = @price.price
+          | 円

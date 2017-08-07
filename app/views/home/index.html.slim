@@ -1,7 +1,7 @@
 .row.mT30
   .col-xs-12
     h4.text-center
-      | このサービスのご利用は、とっても簡単！
+      | 使い方は、とっても簡単！
       br
       | 下のボックスにWiggleの商品ページのURLを貼って登録ボタンを押すだけです！
 
@@ -19,18 +19,4 @@
       | あなたが登録した商品一覧
     .row
       .col-sm-8.col-xs-12.col-sm-offset-2
-        .table-responsive
-          table.table.table-striped
-            tr
-              th
-                | 商品名
-              th
-                | 価格
-            - current_user.product.each do |p|
-              tr
-                td
-                  = p.name
-                td
-                  - @price = p.product_prices.last
-                  = @price.price
-                  | 円
+        = render 'shared/home/price_table'
