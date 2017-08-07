@@ -202,3 +202,6 @@ ja:
       long: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
       short: "%y/%m/%d %H:%M"
     pm: 午後
+
+  view:
+    site_title: ロードバイク通販 最低価格通知

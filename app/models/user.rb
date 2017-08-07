@@ -13,8 +13,8 @@ class User < ApplicationRecord
                           provider: auth.provider,
                           uid:      auth.uid,
                           email:    auth.info.email,
-                          token:    auth.credentials.token,
-                          password: Devise.friendly_token[0,20] )
+                          token:    auth.credentials.token
+                        )
     end
 
     return user

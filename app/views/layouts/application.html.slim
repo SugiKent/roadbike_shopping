@@ -2,21 +2,16 @@ doctype html
 html
   head
     title
-      | RoadShopping
+      = t('view.site_title')
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
   body
+    = render 'shared/header'
     - flash.each do |type, value|
       - type = "info" if type == 'notice'
       = content_tag(:div, value, class: "alert alert-#{type} bg-#{type}")
 
-    #user-info
-      - if user_signed_in?
-        = current_user.name
-        | [
-        = link_to 'Sign out', destroy_user_session_path, method: :delete
-        | ]
-      - else
-        = link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path
-    = yield
+
+    .container-fluid
+      = yield

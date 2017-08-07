@@ -1,4 +1,4 @@
-class ProductsController < ApplicationController
+class ProductsController < UserPageController
   after_action :scrape_product_info, only: %i(create)
 
   def create

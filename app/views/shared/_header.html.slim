@@ -1,0 +1,11 @@
+.container-fluid.pLR0
+  nav.navbar.navbar-default
+    = link_to t('view.site_title'), root_path, class: "navbar-brand"
+    .collapse.navbar-collapse
+      ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
+          li
+            = link_to 'サインアウト', destroy_user_session_path, method: :delete
+        - else
+          li
+            = link_to "Facebookログイン", user_facebook_omniauth_authorize_path

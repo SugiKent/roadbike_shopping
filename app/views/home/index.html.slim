@@ -1,15 +1,36 @@
-h1
-  | Home#index
-p
-  | Find me in app/views/home/index.html.erb
+.row.mT30
+  .col-xs-12
+    h4.text-center
+      | このサービスのご利用は、とっても簡単！
+      br
+      | 下のボックスにWiggleの商品ページのURLを貼って登録ボタンを押すだけです！
 
-= form_with url: products_path, scope: :products, html: { data: {remote: false} } do |f|
-  = f.text_field :url
-  = f.submit '登録'
+.row.mT30
+  .col-xs-12.text-center
+    = form_with url: products_path, scope: :products, html: { data: {remote: false} } do |f|
+      .col-sm-6.col-xs-12.col-sm-offset-3
+        = f.text_field :url, placeholder: 'Wiggleの商品ページのURLを入力して下さい。', class: "form-control"
+      .col-xs-12.mT10
+        = f.submit '登録', class: 'btn btn-primary'
 
-- current_user.product.each do |p|
-  = p.name
-  | &nbsp;
-  = ProductPrice.find(p.id).price
-  | 円
-  br
+.row.mT30
+  .col-xs-12
+    p.text-center
+      | あなたが登録した商品一覧
+    .row
+      .col-sm-8.col-xs-12.col-sm-offset-2
+        .table-responsive
+          table.table.table-striped
+            tr
+              th
+                | 商品名
+              th
+                | 価格
+            - current_user.product.each do |p|
+              tr
+                td
+                  = p.name
+                td
+                  - @price = p.product_prices.last
+                  = @price.price
+                  | 円

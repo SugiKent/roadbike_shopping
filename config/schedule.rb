@@ -2,12 +2,13 @@
 #
 # It's helpful, but not entirely necessary to understand cron before proceeding.
 # http://en.wikipedia.org/wiki/Cron
-
+require File.expand_path(File.dirname(__FILE__) + "/environment")
+set :output, 'log/cron.log'
 # Example:
 #
 # set :output, "/path/to/my/cron_log.log"
 #
-every 1.day, at: '11:59 am' do
+every 1.day, at: '3pm' do # 昼の12時に配信
   runner "ProductPrice.crawling_price"
 end
 #

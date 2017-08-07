@@ -1,7 +1,7 @@
 class Product < ApplicationRecord
   has_many :product_user
   has_many :user, through: :product_user
-  has_many :product_price
+  has_many :product_prices
 
   validates :url, presence: true
 
