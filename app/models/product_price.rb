@@ -1,8 +1,6 @@
 class ProductPrice < ApplicationRecord
   belongs_to :product
 
-  INFO_PLACE = {:wiggle_price => '.js-unit-price', :wiggle_name => '#productTitle'}
-
   def save_price(product)
     info = scrape_product_info(product)
     ProductPrice.create(product_id: product.id, price: info[0])
@@ -11,14 +9,15 @@ class ProductPrice < ApplicationRecord
 
   def scrape_product_info(product)
     info = []
+    @site = find_site_info(product)
     agent = Mechanize.new
     agent.user_agent_alias = "Mac Safari 4"
     site = agent.get(product.url)
     doc = Nokogiri::HTML(site.content.toutf8)
     # 価格を取得
-    price = doc.css("#{INFO_PLACE[:wiggle_price]}").text
+    price = doc.css("#{@site.price_selector}").text
     # 商品名を取得
-    name = doc.css("#{INFO_PLACE[:wiggle_name]}").text
+    name = doc.css("#{@site.name_selector}").text
     info << price.match(/¥(\S+)/)[1]
     info << name
   end
@@ -26,6 +25,11 @@ class ProductPrice < ApplicationRecord
   def update_latest_price?(product)
     prices = ProductPrice.where(product_id: product.id)
     prices[-2].price > prices.last.price ? true : false
+  end
+
+  def find_site_info(product)
+    uri = URI.parse(product.url)
+    site = Site.find_url_host(uri).first
   end
 
   def self.crawling_price

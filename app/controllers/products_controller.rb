@@ -19,6 +19,11 @@ class ProductsController < UserPageController
           @product.save!
         end
       end
+    rescue ActiveRecord::RecordInvalid
+      error_messages = @product.errors.messages.map{|key, em| em}
+      flash[:danger] = error_messages.flatten.first
+      redirect_to user_root_path
+      return
     rescue
       flash[:danger] = 'ターゲット商品の登録ができませんでした。'
       redirect_to user_root_path
@@ -52,6 +57,7 @@ class ProductsController < UserPageController
   end
 
   def scrape_product_info
+    return if @product.invalid?
     ProductPrice.new.save_price(@product)
   end
 end
