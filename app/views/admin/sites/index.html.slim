@@ -1,0 +1,20 @@
+.row.mT20
+  .col-xs-12
+    = link_to "新規登録", new_admin_site_path, class: "btn btn-primary"
+.row.mT20
+  .col-xs-12
+    table.table.table-striped
+      tr
+        th
+          | サイト名
+        th
+          | サイトURL
+        th
+      - @sites.each do |site|
+        tr
+          td
+            = site.name
+          td
+            = site.url
+          td
+            = link_to "編集", edit_admin_site_path(site), class: "btn btn-success"

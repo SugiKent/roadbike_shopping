@@ -12,5 +12,9 @@ Rails.application.routes.draw do
   resources :products, only: %i(create)
   resources :mypage, only: %i(index edit update)
 
+  namespace :admin do
+    resources :sites
+  end
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
