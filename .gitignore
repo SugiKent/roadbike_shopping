@@ -13,6 +13,9 @@
 !/log/.keep
 !/tmp/.keep
 
+log/
+tmp/
+
 .env
 
 /node_modules
