@@ -1,14 +1,25 @@
-@app_path = '/var/www/roadbike_shopping'
-working_directory @app_path + "/current"
+#ワーカーの数。後述
+  $worker  = 2
+#何秒経過すればワーカーを削除するのかを決める
+  $timeout = 30
+#自分のアプリケーション名、currentがつくことに注意。
+  $app_dir = "/var/www/roadbike_shopping/current"
+#リクエストを受け取るポート番号を指定。後述
+  $listen  = '/var/www/roadbike_shopping/current/tmp/sockets/.unicorn.sock'
+#PIDの管理ファイルディレクトリ
+  $pid     = File.expand_path 'tmp/pids/unicorn.pid', $app_dir
+#エラーログを吐き出すファイルのディレクトリ
+  $std_log = File.expand_path 'log/unicorn.log', $app_dir
 
-worker_processes 2
+# 上記で設定したものが適応されるよう定義
+  worker_processes  $worker
+  working_directory $app_dir
+  stderr_path $std_log
+  stdout_path $std_log
+  timeout $timeout
+  listen  $listen
+  pid $pid
 preload_app true
-timeout 30
-listen '/var/www/roadbike_shopping/current/tmp/sockets/.unicorn.sock', :backlog => 64
-pid "/var/www/roadbike_shopping/shared/tmp/pids/unicorn.pid"
-
-stderr_path "#{@app_path}/log/unicorn.stderr.log"
-stdout_path "#{@app_path}/log/unicorn.stdout.log"
 
 root = "/var/www/roadbike_shopping/current"
   before_exec do |server|
