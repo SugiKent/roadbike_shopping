@@ -2,13 +2,15 @@
 #
 # It's helpful, but not entirely necessary to understand cron before proceeding.
 # http://en.wikipedia.org/wiki/Cron
+env :PATH, ENV['PATH']
 require File.expand_path(File.dirname(__FILE__) + "/environment")
 set :output, 'log/cron.log'
+set :bundle_command, "/root/.rbenv/shims/bundle"
 # Example:
 #
 # set :output, "/path/to/my/cron_log.log"
 #
-every 1.day, at: '10:46pm' do # 昼の12時に配信
+every 1.day, at: '10:55pm' do # 昼の12時に配信
   runner "ProductPrice.crawling_price"
 end
 #
