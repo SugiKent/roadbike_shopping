@@ -8,7 +8,7 @@ set :output, 'log/cron.log'
 #
 # set :output, "/path/to/my/cron_log.log"
 #
-every 1.day, at: '10:27pm' do # 昼の12時に配信
+every 1.day, at: '10:46pm' do # 昼の12時に配信
   runner "ProductPrice.crawling_price"
 end
 #
