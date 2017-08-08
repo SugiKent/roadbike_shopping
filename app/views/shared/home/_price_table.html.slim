@@ -5,11 +5,19 @@
         | 商品名
       th
         | 価格
+      th
+        | 変化(*)
     - current_user.product.each do |p|
+      - prices = p.product_prices
       tr
         td
-          = p.name
+          = link_to p.name, p.url, target: '_blank'
         td
-          - @price = p.product_prices.last
-          = @price.price
+          = prices.last.price
           | 円
+        td
+          = sanitize(price_deference(prices))
+small
+  | * 変化とは、前回の価格取得時との比較です。
+  br
+  | 通常、価格は商品URL登録時と、毎日正午に更新されます。

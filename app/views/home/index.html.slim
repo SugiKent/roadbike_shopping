@@ -9,7 +9,7 @@
   .col-xs-12.text-center
     = form_with url: products_path, scope: :products, html: { data: {remote: false} } do |f|
       .col-sm-6.col-xs-12.col-sm-offset-3
-        = f.text_field :url, placeholder: 'Wiggleの商品ページのURLを入力して下さい。', class: "form-control"
+        = f.text_field :url, placeholder: '商品ページのURLを入力して下さい。', class: "form-control"
       .col-xs-12.mT10
         = f.submit '登録', class: 'btn btn-primary'
 
