@@ -15,7 +15,6 @@ set :default_env, { path: "/usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH" }
 set :keep_releases, 5
 
 # wheneverのため
-set :whenever_command, '/root/.rbenv/shims/bundle exec whenever'
 set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
 
 after 'deploy:publishing', 'deploy:restart'
