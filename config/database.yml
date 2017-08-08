@@ -50,5 +50,5 @@ test:
 production:
   <<: *default
   database: road_shopping_production
-  username: road_shopping
+  username: root
   password: <%= ENV['ROAD_SHOPPING_DATABASE_PASSWORD'] %>
