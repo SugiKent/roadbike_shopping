@@ -8,13 +8,16 @@ set :environment, :production
 require File.expand_path(File.dirname(__FILE__) + "/environment")
 set :output, 'log/cron.log'
 set :bundle_command, "/root/.rbenv/shims/bundle"
+
+job_type :custom_runner,
+  "cd :path && /root/.rbenv/shims/bundle exec rails runner -e :environment ':task' :output"
 # Example:
 #
 # set :output, "/path/to/my/cron_log.log"
 #
 # every 1.day, at: '10:55pm' do # 昼の12時に配信
 every 4.minute do
-  runner "ProductPrice.crawling_price"
+  custom_runner "ProductPrice.crawling_price"
 end
 #
 # every 4.days do
