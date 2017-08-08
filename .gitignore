@@ -17,8 +17,8 @@ log/
 tmp/
 
 .env
-
-cofig/database.yml
+config/database.yml
+config/secrets.yml
 
 /node_modules
 /yarn-error.log
