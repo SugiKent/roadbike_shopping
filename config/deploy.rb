@@ -15,7 +15,9 @@ set :default_env, { path: "/usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH" }
 set :keep_releases, 5
 
 after 'deploy:publishing', 'deploy:restart'
+after 'deploy:publishing', 'deploy:symlink:linked_dirs'
 namespace :deploy do
+
   desc 'Restart application'
   task :restart do
     invoke 'unicorn:restart'

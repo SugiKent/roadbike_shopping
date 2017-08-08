@@ -10,8 +10,9 @@ pid "/var/www/roadbike_shopping/shared/tmp/pids/unicorn.pid"
 stderr_path "#{@app_path}/log/unicorn.stderr.log"
 stdout_path "#{@app_path}/log/unicorn.stdout.log"
 
-before_fork do |server, worker|
-  ENV['BUNDLE_GEMFILE'] = File.expand_path('Gemfile', ENV['RAILS_ROOT'])
+root = "/var/www/roadbike_shopping/current"
+  before_exec do |server|
+    ENV['BUNDLE_GEMFILE'] = "#{root}/Gemfile"
 end
 
 before_fork do |server, worker|
