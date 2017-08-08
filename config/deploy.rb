@@ -20,8 +20,7 @@ namespace :deploy do
 
   desc 'Restart application'
   task :restart do
-    invoke 'unicorn:stop'
-    invoke 'unicorn:start'
+    invoke 'unicorn:restart'
   end
 end
 
