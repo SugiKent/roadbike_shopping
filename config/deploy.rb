@@ -15,7 +15,9 @@ set :default_env, { path: "/usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH" }
 set :keep_releases, 5
 
 # wheneverのため
+set :whenever_environment, "#{fetch(:stage)}"
 set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
+SSHKit.config.command_map[:whenever] = "bundle exec whenever"
 
 after 'deploy:publishing', 'deploy:restart'
 after 'deploy:publishing', 'deploy:symlink:linked_dirs'
