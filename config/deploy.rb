@@ -14,6 +14,9 @@ set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets bundle public/system
 set :default_env, { path: "/usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH" }
 set :keep_releases, 5
 
+# wheneverのため
+set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
+
 after 'deploy:publishing', 'deploy:restart'
 after 'deploy:publishing', 'deploy:symlink:linked_dirs'
 namespace :deploy do

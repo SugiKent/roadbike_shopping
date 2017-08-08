@@ -38,6 +38,7 @@ require "capistrano/rails/migrations"
 # require "capistrano/passenger"
 
 require 'capistrano3/unicorn'
+require 'whenever/capistrano'
 
 set :linked_files, %w{config/secrets.yml .env}
 
