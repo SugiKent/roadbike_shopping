@@ -9,7 +9,7 @@ set :deploy_to, '/var/www/roadbike_shopping'
 set :scm, :git
 set :log_level, :debug
 set :pty, true
-set :linked_files, %w{config/database.yml}
+set :linked_files, %w{ config/secrets.yml config/database.yml}
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets bundle public/system public/assets}
 set :default_env, { path: "/usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH" }
 set :keep_releases, 5
