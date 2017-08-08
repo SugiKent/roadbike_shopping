@@ -2,7 +2,8 @@
 #
 # It's helpful, but not entirely necessary to understand cron before proceeding.
 # http://en.wikipedia.org/wiki/Cron
-env :PATH, ENV['PATH']
+# env :PATH, ENV['PATH']
+env :GEM_PATH, ENV['GEM_PATH']
 set :environment, :production
 require File.expand_path(File.dirname(__FILE__) + "/environment")
 set :output, 'log/cron.log'
