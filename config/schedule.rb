@@ -10,7 +10,8 @@ set :bundle_command, "/root/.rbenv/shims/bundle"
 #
 # set :output, "/path/to/my/cron_log.log"
 #
-every 1.day, at: '10:55pm' do # 昼の12時に配信
+# every 1.day, at: '10:55pm' do # 昼の12時に配信
+every 4.minute do
   runner "ProductPrice.crawling_price"
 end
 #
