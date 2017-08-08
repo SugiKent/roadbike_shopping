@@ -18,6 +18,8 @@ tmp/
 
 .env
 
+cofig/database.yml
+
 /node_modules
 /yarn-error.log
 
