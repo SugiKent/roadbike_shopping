@@ -4,7 +4,7 @@ working_directory @app_path + "/current"
 worker_processes 2
 preload_app true
 timeout 30
-listen "/tmp/unicorn.sock", :backlog => 64
+listen "#{@app_path}/shared/tmp/sockets/.unicorn.sock", :backlog => 64
 pid "/var/www/roadbike_shopping/shared/tmp/pids/unicorn.pid"
 
 stderr_path "#{@app_path}/log/unicorn.stderr.log"
